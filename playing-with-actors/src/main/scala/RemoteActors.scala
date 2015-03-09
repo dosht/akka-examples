@@ -4,11 +4,12 @@ import akka.actor.{ ActorSystem, Actor, ActorRef, Props, ActorNotFound }
 import akka.pattern.ask
 import akka.util.Timeout
 
-import scala.concurrent.duration._
 import com.typesafe.config.ConfigFactory
 
-case class Member(name: String, age: Int, family: String)
+import scala.concurrent.duration._
+
 case class Get(username: String)
+case class Member(name: String, age: Int, family: String)
 
 class MembersActor extends Actor  {
   val members = Map(
@@ -60,7 +61,7 @@ object MembersServiceRemoteCreation extends App {
 
   val membersActor = system.actorOf(Props[MembersActor], "membersActorRemote")
   println(s"The remote path of membersActor is ${membersActor.path}")
-  membersActor ? Get("aphrodite") map (m => println(s"Aphrodite data is $m"))
+  membersActor ? Get("atlas") map (m => println(s"Aphrodite data is $m"))
 
   Thread.sleep(1000)
   system.shutdown()

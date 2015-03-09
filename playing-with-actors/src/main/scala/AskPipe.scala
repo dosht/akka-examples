@@ -15,8 +15,8 @@ class Apollo extends Actor {
     case MakeProphecy =>
       val requester = sender()
       Future{
-        println("Thinking...")
-        Thread.sleep(100)
+          println("Thinking...")
+          Thread.sleep(100)
         Prophecy("Something will happen!", requester)
       } pipeTo self
 

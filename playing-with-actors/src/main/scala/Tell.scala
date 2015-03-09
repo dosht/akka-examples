@@ -11,6 +11,7 @@ case class CreateChildren(names: Seq[String])
 class Greek extends Actor {
   def receive = {
     case HelloWorld => println("Hello World!")
+
     case SayHelloTo(actor) =>
       println(s"Saying hello to $actor")
       actor ! SayHelloFrom(self)
